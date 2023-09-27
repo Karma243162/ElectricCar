@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{parent()}}Liste des Utilisateur
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<h1 class="text-center text-primary mt-4 pt-4 display-1 fw-bold">
+			Liste des  Utilisateurs </h1>
+
+		
+			<h3 class="mt-5 text-center text-primary fw-bold">Nombre d' utilisateurs : {{ count }}</h3>
+		
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-8 bg-white p-4 m-0 text-primary">
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<tr class="fw-bold text-primary">
+								<th scope="col">ID</th>
+								<th scope="col">Nom</th>
+                 <th scope="col">Email</th>
+             {#      <th scope="col">Role</th> #}
+							</tr>
+						</thead>
+						<tbody>
+							{% for i in user %}
+							<tr class="{{ cycle(['table-primary', 'table-secondary'], loop.index0) }}">
+                <td>{{ i.id }}</td>
+								<td>{{ i.prenom | capitalize }}</td>
+                <td>{{ i.email | lower }} 		<a href="{{path('app_remove_user_list',{'id':i.id})}}"><button>Ban</button></a>
+					
+				
+					<a href="{{path('app_user_verif',{'id':i.id})}}"><button>verifier le user</button></a>
+
+					
+					
+				</td> </td>
+				
+                                 
+							
+								
+								</tr>
+								
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %} 
+ 
